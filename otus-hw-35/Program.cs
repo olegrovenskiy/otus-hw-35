@@ -1,18 +1,20 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using static System.Net.Mime.MediaTypeNames;
 
-OtusDictionary test = new OtusDictionary();
-
-test.Add(1, "test1");
-test.Add(9, "test3");
-test.Add(5, null);
-test.Add(9, "test9");
+Console.WriteLine("Hello, World!");
 
 
 
+var newdictionary = new OtusDictionary<DictionaryItem>();
 
-Console.WriteLine("----" + test.Get(9));
-Console.WriteLine("----" + test.Get(5));
-Console.WriteLine("----" + test.Get(4));
+newdictionary.Add(1, "test1");
+newdictionary.Add(3, "test3");
+newdictionary.Add(5, "test3");
+
+
+var itemfirst = newdictionary[0]; 
+Console.WriteLine("  " + itemfirst.Key + "   " + itemfirst.Value);
+
+Console.WriteLine("----" + newdictionary.Get(3));
 
 
 Console.ReadKey();
