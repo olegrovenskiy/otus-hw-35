@@ -29,10 +29,12 @@ public class OtusDictionary
     public void Add (int key, string value)
 
 	{
+        for (int i = 0; i < pointer; i++)
+            if (dictionary[i].Key == key) throw new KeyExistException("ключ дублируется");
+
 
         if (value != null)
         {
-
             OtusDictionary otus = new OtusDictionary();
 
 
@@ -41,19 +43,13 @@ public class OtusDictionary
                 //         throw new NoFreeException("словарь полон"); это ддля первых 2х пунктов, когда фиксированный размер массива
                 size *= 2;
                 Array.Resize(ref dictionary, size);
-
             }
 
             otus.Key = key;
             otus.Value = value;
             dictionary[pointer] = otus;
-
-
-
             pointer++;
-
         }
-
     }
 
 
@@ -62,8 +58,7 @@ public class OtusDictionary
 
         for (int i = 0; i < pointer; i++)
             if (dictionary[i].Key == key) return dictionary[i].Value;
-            
-
+           
        return "Key not exist";
 
     }
