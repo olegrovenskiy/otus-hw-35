@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 
 public class OtusDictionary<T>
@@ -16,6 +17,12 @@ public class OtusDictionary<T>
 
     public void Add(int key, string value)
     {
+        // проверка дублирования ключа
+
+        for (int i = 0; i < size; i++)
+            if (dictionary[i] != null && dictionary[i].Key == key) throw new KeyExistException("ключ дублируется");
+
+
 
         // проверка свободного места и ресайз если его нет
 
@@ -33,7 +40,7 @@ public class OtusDictionary<T>
             }
         }
 
-            if (value != null)
+            if (value != null) // если value = null, то такой элемент проигнорируется
         {
 
 
